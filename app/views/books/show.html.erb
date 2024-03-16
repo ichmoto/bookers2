@@ -1,6 +1,12 @@
+<h1>Book detail</h1>
 <div>
   <%= image_tag @book.get_image %>
-  <p>説明：<%= @book.caption %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
+  <p>User_image：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>Title：<%= @book.title %></p>
+  <p>Opinion：<%= @book.body %></p>
+  <p>name：<%= @book.user.name %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "Edit", book_path(@book), method: :edit %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
 </div>
