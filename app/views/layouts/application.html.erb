@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
 <html>
   <head>
     <title>Bookers2</title>
@@ -12,6 +16,7 @@
 
   <body>
     <header>
+    <% end %>
     <% if user_signed_in? %>
       <li>
       <%= link_to 'Users', user_path(current_user.id) %>
@@ -26,6 +31,12 @@
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
+      <li>
+        <%= link_to "Home", "/" %>
+      </li>
+      <li>
+        <%= link_to "About", "/homes/about" %>
+      </li>
       <li>
         <%= link_to "Sign up", new_user_registration_path %>
       </li>
