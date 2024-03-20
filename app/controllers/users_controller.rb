@@ -15,13 +15,20 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      flash[:notice] = "You have failed to update."
-      render :new
+      flash.now[:notice] = "You have failed to update."
+      render :edit
     end
+  end
+
+  def index
+    @user = current_user
+    @users = User.all
+    @books = @user.books
+    @book = Book.new
   end
 
 private
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :introdduction, :profile_image)
   end
 end

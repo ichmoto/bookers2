@@ -8,19 +8,22 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to books_path
+      redirect_to book_path(@book.id)
     else
-      flash[:notice] = "You have failed to create book."
+      flash.now[:notice] = "You have failed to create book."
+      render :new
     end
   end
 
   def index
+    @book = Book.new
     @books = Book.all
-
+    @user = current_user
   end
 
   def show
     @book = Book.find(params[:id])
+    @user = current_user
   end
 
   def edit
@@ -33,7 +36,8 @@ class BooksController < ApplicationController
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(@book.id)
     else
-      flash[:notice] = "You have failed to update book."
+      flash.now[:notice] = "You have failed to update book."
+      render :edit
     end
   end
 
@@ -43,6 +47,7 @@ class BooksController < ApplicationController
     redirect_to '/books'
   end
 
+private
   def book_params
     params.require(:book).permit(:title, :body)
   end

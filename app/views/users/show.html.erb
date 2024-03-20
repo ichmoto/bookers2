@@ -1,14 +1,13 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p><%= link_to "Update User", edit_user_path(@user) %></p>
-</div>
+<%= render 'list', user: @user %>
+<%= render 'books/list', book: @book %>
 
 <% @books.each do |book| %>
 <div>
-  <%= link_to user_path(book.user) do %>
-    <%= image_tag book.user.get_profile_image(100,100) %>
+  <%= link_to books_path(book.id) do %>
+    <%= image_tag book.get_image %>
   <% end %>
-  <p>name：<%= book.body %></p>
+  <p>User profile：<%= image_tag book.user.get_profile_image(100,100) %></p>
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.body %></p>
 </div>
 <% end %>

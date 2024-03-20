@@ -1,4 +1,7 @@
-<h1>Book detail</h1>
+<%= render 'users/list', user: @user %>
+<%= render 'list', book: @book %>
+
+<h2>Book detail</h2>
 <div>
   <%= image_tag @book.get_image %>
   <p>User_image：<%= image_tag 'sample-author1.jpg' %></p>
