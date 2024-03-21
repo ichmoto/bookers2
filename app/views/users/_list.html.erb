@@ -1,11 +1,14 @@
 <div>
   <h2>User info</h2>
-  <%= image_tag user.get_profile_image(100,100) %>
+  <p><%= image_tag user.get_profile_image(50,50) %><p>
   <table class="table table-striped">
   <p>Name <%= user.name %></p>
   <p>Intorduction <%= user.introduction %></p>
   </table>
   <% if user = current_user %>
-  <p><%= link_to "Update User", edit_user_path(user) %></p>
+  <p><%= link_to edit_user_path(user), class: "btn btn btn-secondary", method: :get do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+  </p>
   <% end %>
 </div>

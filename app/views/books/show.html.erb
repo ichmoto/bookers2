@@ -3,11 +3,13 @@
 
 <h2>Book detail</h2>
 <div>
-  <%= image_tag @book.get_image %>
-  <p>User_image：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
-  <p>name：<%= @book.user.name %></p>
+  <%= link_to user_path(@book.user.id) do %>
+    <%= image_tag @book.user.get_profile_image(50,50) %>
+  <% end %>
+  <%= link_to book_path(@book.id) do %>
+    <p><%= @book.title %></p>
+  <% end %>
+  <p><%= @book.body %></p>
   <% if @book.user == current_user %>
     <%= link_to "Edit", edit_book_path(@book.id) %>
     <%= link_to "Back", '/books' %>

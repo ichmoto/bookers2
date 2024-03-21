@@ -11,7 +11,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       flash.now[:notice] = "You have failed to create book."
-      render :new
+      render :index
     end
   end
 
